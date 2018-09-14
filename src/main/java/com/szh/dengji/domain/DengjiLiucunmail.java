@@ -21,7 +21,7 @@ import lombok.Data;
  */
 @Data
 @Entity
-public class Liucunmail {
+public class DengjiLiucunmail {
     @Id
     @Column
     String toudimailno;

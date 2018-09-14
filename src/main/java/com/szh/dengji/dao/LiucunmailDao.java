@@ -7,7 +7,7 @@
 
 package com.szh.dengji.dao;
 
-import com.szh.dengji.domain.Liucunmail;
+import com.szh.dengji.domain.DengjiLiucunmail;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -19,11 +19,11 @@ import org.springframework.stereotype.Repository;
  * @date 2018-9-14 14:54:21
  */
 @Repository
-public interface DengjiLiucunmailDao extends  JpaRepository<Liucunmail,String>{
+public interface LiucunmailDao extends  JpaRepository<DengjiLiucunmail,String>{
 
     public List findByBumen(String bumen);
     
-    public Liucunmail findByToudimailno(String mailno);
+    public DengjiLiucunmail findByToudimailno(String mailno);
     
     public boolean existsByShoujimailno(String mailno);
     

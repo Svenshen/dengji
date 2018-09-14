@@ -7,12 +7,12 @@
 
 package com.szh.dengji.service.impl;
 
-import com.szh.dengji.domain.Liucunmail;
+import com.szh.dengji.domain.DengjiLiucunmail;
 import com.szh.dengji.service.LiucunmailService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.szh.dengji.dao.DengjiLiucunmailDao;
+import com.szh.dengji.dao.LiucunmailDao;
 
 /**
  *
@@ -24,10 +24,10 @@ import com.szh.dengji.dao.DengjiLiucunmailDao;
 public class LiucunmailServiceImpl implements LiucunmailService{
 
     @Autowired
-    DengjiLiucunmailDao liucunmailDao;
+    LiucunmailDao liucunmailDao;
 
     @Override
-    public void add(Liucunmail liucunmail) throws Exception {
+    public void add(DengjiLiucunmail liucunmail) throws Exception {
         if(liucunmailDao.existsById(liucunmail.getToudimailno()))
             throw new Exception("邮件已存在1");
         if(liucunmailDao.existsByShoujimailno(liucunmail.getShoujimailno()))
@@ -37,12 +37,12 @@ public class LiucunmailServiceImpl implements LiucunmailService{
     }
 
     @Override
-    public List<Liucunmail> findAll() {
+    public List<DengjiLiucunmail> findAll() {
         return liucunmailDao.findAll();
     }
 
     @Override
-    public List<Liucunmail> findByBumen(String bumen) {
+    public List<DengjiLiucunmail> findByBumen(String bumen) {
         return liucunmailDao.findByBumen(bumen);
     }
     

@@ -7,7 +7,7 @@
 
 package com.szh.dengji.service;
 
-import com.szh.dengji.domain.Liucunmail;
+import com.szh.dengji.domain.DengjiLiucunmail;
 import java.util.List;
 
 /**
@@ -18,11 +18,11 @@ import java.util.List;
  */
 public interface LiucunmailService {
 
-    public void add(Liucunmail liucunmail) throws Exception;
+    public void add(DengjiLiucunmail liucunmail) throws Exception;
     
-    public List<Liucunmail> findAll();
+    public List<DengjiLiucunmail> findAll();
     
-    public List<Liucunmail> findByBumen(String bumen);
+    public List<DengjiLiucunmail> findByBumen(String bumen);
     
   
     

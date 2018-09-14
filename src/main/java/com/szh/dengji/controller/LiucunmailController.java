@@ -8,7 +8,7 @@
 package com.szh.dengji.controller;
 
 import com.szh.dengji.domain.DengjiUser;
-import com.szh.dengji.domain.Liucunmail;
+import com.szh.dengji.domain.DengjiLiucunmail;
 import com.szh.dengji.service.LiucunmailService;
 import java.util.Date;
 import java.util.List;
@@ -52,7 +52,7 @@ public class LiucunmailController {
     }   
     
     @PostMapping("/add")
-    public ModelAndView add(ModelAndView modelAndView,Liucunmail liucunmail){
+    public ModelAndView add(ModelAndView modelAndView,DengjiLiucunmail liucunmail){
         init(modelAndView);
         Subject subject = SecurityUtils.getSubject();
         DengjiUser user = (DengjiUser)subject.getPrincipal();
@@ -78,10 +78,10 @@ public class LiucunmailController {
         DengjiUser user = (DengjiUser)subject.getPrincipal();
         modelAndView.setViewName(chaxunhtml);
         if(user.getQuanxian() > 10){
-            List<Liucunmail> list = liucunmailService.findAll();
+            List<DengjiLiucunmail> list = liucunmailService.findAll();
             modelAndView.addObject("maillist",list);
         }else{
-            List<Liucunmail> list = liucunmailService.findByBumen(user.getBumen());
+            List<DengjiLiucunmail> list = liucunmailService.findByBumen(user.getBumen());
             modelAndView.addObject("maillist",list);
         }
         
