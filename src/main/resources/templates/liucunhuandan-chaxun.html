@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="zh-CN">
+<head th:replace="common::commonHeader('主页')">
+</head>
+<body>
+    <div th:include="common::commonNav"></div>
+    <div class="container">
+        <table class="table table-striped table-hover " >
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>投递邮件号</th>
+                    <th>收寄邮件号</th>
+                    <th>收寄金额</th>
+                    <th>姓名</th>
+                    <th>部门</th>
+                    <th>时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="mail,mailstat : ${maillist}">
+                    <td th:text="${mailstat.count}"></td>
+                    <td th:text="${mail.toudimailno}" ></td>
+                    <td th:text="${mail.shoujimailno}"></td>
+                    <td th:text="${mail.shoujijine}"></td>
+                    <td th:text="${mail.name}"></td>
+                    <td th:text="${mail.bumen}"></td>
+                    <td th:text="${mail.shijian}"></td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+    <div th:include="common::commonFooter"></div>
+</body>
+</html>
