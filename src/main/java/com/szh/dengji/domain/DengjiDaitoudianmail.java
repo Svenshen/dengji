@@ -12,29 +12,31 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
 import lombok.Data;
 
 /**
  *
  * @author  szh
  * QQ:873689
- * @date 2018-9-14 14:46:24
+ * @date 2018-9-17 8:08:23
  */
 @Data
 @Entity
-public class DengjiLiucunmail implements Serializable {
+public class DengjiDaitoudianmail implements Serializable {
+
     @Id
     @Column
-    String toudimailno;
-    @Column(unique = true)
-    String shoujimailno;
+    String mailno;
     @Column
     String name;
     @Column
     String bumen;
-    @Column 
-    Double shoujijine;
     @Column
+    String daitoudian;
+    @Column
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     Date shijian;
-
+    
+    
 }

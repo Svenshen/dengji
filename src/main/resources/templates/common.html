@@ -22,12 +22,28 @@
 					<li><a th:href="@{/liucunhuandan/chaxun}">数据查询</a></li>
 				</ul>
                 </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">代投点<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+					<li><a th:href="@{/daitoudian/mail/add}">妥投登记</a></li>
+					<li><a th:href="@{/daitoudian/mail/chaxun}">数据查询</a></li>
+                                        <li><a th:href="@{/daitoudian/mail/huizong}">汇总查询</a></li>
+				</ul>
+                </li>
             </ul>
             <ul class="nav navbar-nav" th:case="20" >
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">留存邮件换单<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-					<li><a th:href="@{/liucunhuandan/chaxun}">数据查询</a></li>
+					<li><a th:href="@{/liucunhuandan/chaxun}">明细查询</a></li>
+                                        
+				</ul>
+                </li>
+                 <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">代投点<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+					<li><a th:href="@{/daitoudian/mail/chaxun}">明细查询</a></li>
+                                        <li><a th:href="@{/daitoudian/mail/huizong}">汇总查询</a></li>
 				</ul>
                 </li>
             </ul>

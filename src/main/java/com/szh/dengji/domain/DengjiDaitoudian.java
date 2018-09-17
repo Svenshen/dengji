@@ -8,7 +8,6 @@
 package com.szh.dengji.domain;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -18,23 +17,15 @@ import lombok.Data;
  *
  * @author  szh
  * QQ:873689
- * @date 2018-9-14 14:46:24
+ * @date 2018-9-17 15:36:03
  */
 @Data
 @Entity
-public class DengjiLiucunmail implements Serializable {
+public class DengjiDaitoudian implements Serializable {
+
     @Id
-    @Column
-    String toudimailno;
-    @Column(unique = true)
-    String shoujimailno;
     @Column
     String name;
     @Column
     String bumen;
-    @Column 
-    Double shoujijine;
-    @Column
-    Date shijian;
-
 }

@@ -6,7 +6,7 @@
 <body>
     <div th:include="common::commonNav"></div>
     <div class="container">
-        <form method="post" th:action="@{/liucunhuandan/add}" class="form-horizontal" onkeydown="if(event.keyCode==13){return false;}">
+        <form method="post" th:action="@{/daitoudian/add}" class="form-horizontal" onkeydown="if(event.keyCode==13){return true;}">
             <div class="form-group">
                 <label style="font-size: 12px;color: red" class="col-sm-2 control-label"  ></label>
                 <div class="col-sm-4">
@@ -16,23 +16,19 @@
             <div class="form-group">
               <label for="exampleInputEmail1" class="col-sm-2 control-label" >投递邮件号</label>
               <div class="col-sm-4 ">
-                <input type="text" class="form-control"  name="toudimailno" th:value="${mail!=null}?${mail.toudimailno}" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')">
+                  <textarea class="form-control" rows="8" name="mailnos" wrap="hard" onkeyup="value=value.replace(/[^\r\n\w\.\/]/ig,'')"> </textarea>
               </div>
             </div>
             <div class="form-group">
-              <label for="exampleInputPassword1" class="col-sm-2 control-label">收寄邮件号</label>
+              <label for="exampleInputPassword1" class="col-sm-2 control-label">代投点</label>
               <div class="col-sm-4 ">
-                <input type="text" class="form-control"  name="shoujimailno" th:value="${mail!=null}?${mail.shoujimailno}" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')">
-              </div>
+                    <select class="form-control" name="daitoudian" th:each="daitoudian : ${daitoudianlist}">
+                        <option th:text="${daitoudian.name}" th:value="${daitoudian.name}"></option>
+                    </select>
+                </div>
             </div>
             
-            <div class="form-group">
-              <label for="exampleInputPassword1" class="col-sm-2 control-label" >收寄金额</label>
-              <div class="col-sm-4 ">
-                <input type="number" min="0" step="0.01" class="form-control"  name="shoujijine"  th:value="${mail!=null}?${mail.shoujijine}">
-              </div>
-              
-            </div>
+            
 
             <div class="form-group">
                 <label for="exampleInputFile" class="col-sm-2 control-label"></label>
