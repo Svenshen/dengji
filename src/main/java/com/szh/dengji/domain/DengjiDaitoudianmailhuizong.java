@@ -7,6 +7,7 @@
 
 package com.szh.dengji.domain;
 
+import javax.persistence.Entity;
 import lombok.Data;
 
 /**
@@ -18,15 +19,15 @@ import lombok.Data;
 @Data
 public class DengjiDaitoudianmailhuizong {
 
-    public DengjiDaitoudianmailhuizong(String bumen,String daitoudian, Long shuangliang) {
+    public DengjiDaitoudianmailhuizong(String bumen,String daitoudian, Long shuliang) {
         this.bumen = bumen;
         this.daitoudian = daitoudian;
-        this.shuangliang = shuangliang;
+        this.shuliang = shuliang;
     }
 
     
     
     String bumen;
     String daitoudian;
-    Long shuangliang;
+    Long shuliang;
 }

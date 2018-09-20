@@ -150,15 +150,18 @@ public class DaitoudianController {
         try{
             if(user.getQuanxian() > 10){
                 List<DengjiDaitoudianmailhuizong> list = daitoudianmailService.findByShijianGroupbyDaitoudian(kshijian, jshijian);
+                System.out.println("LILI"+list.size());
                 modelAndView.addObject("maillist",list);
                 for(DengjiDaitoudianmailhuizong d : list){
-                    System.out.println("list->"+d);
+                    System.out.println("list->");
+                    System.out.println("list->"+String.valueOf(d));
                 }
                 
             }else{
                 List<DengjiDaitoudianmailhuizong> list = daitoudianmailService.findByBumenShijianGroupbyDaitoudian(user.getBumen(), kshijian, jshijian);
                 modelAndView.addObject("maillist",list);
                 for(DengjiDaitoudianmailhuizong d : list){
+                    System.out.println("list->");
                     System.out.println("list->"+d);
                 }
             }

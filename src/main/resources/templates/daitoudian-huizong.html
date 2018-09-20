@@ -28,16 +28,16 @@
             <thead>
                 <tr>
                     <th>序号</th>
-                    <th>代投点</th>
                     <th>部门</th>
+                    <th>代投点</th>
                     <th>数量</th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="mail,mailstat : ${maillist}">
                     <td th:text="${mailstat.count}"></td>
-                    <td th:text="${mail.daitoudian}" ></td>
                     <td th:text="${mail.bumen}"></td>
+                    <td th:text="${mail.daitoudian}" ></td>
                     <td th:text="${mail.shuliang}"></td>
                 </tr>
             </tbody>

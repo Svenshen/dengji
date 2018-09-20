@@ -8,6 +8,7 @@
 package com.szh.dengji.dao;
 
 import com.szh.dengji.domain.DengjiDaitoudianmail;
+import com.szh.dengji.domain.DengjiDaitoudianmailhuizong;
 import java.util.Date;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -30,10 +31,10 @@ public interface DaidoudianmailDao extends  JpaRepository<DengjiDaitoudianmail,S
     public List findByShijianBetween(Date kshijian,Date jshijian);
     
     //#{#entityName}
-    @Query(value = "select daitoudian,bumen,count(*) as shuliang from #{#entityName} where bumen = ?1 and shijian between ?2 and ?3 group by daitoudian,bumen")
+    @Query(value = "select new com.szh.dengji.domain.DengjiDaitoudianmailhuizong(bumen,daitoudian,count(*))  from #{#entityName} where bumen = ?1 and shijian between ?2 and ?3 group by daitoudian,bumen")
     public List findByBumenAndShijianBetweenGroupbyDaitoudian(String bumen,Date kshijian,Date jshijian);
     
-    @Query(value = "select daitoudian,bumen,count(*) as shuliang from #{#entityName} where shijian between ?1 and ?2 group by daitoudian,bumen")
+    @Query(value = "select new com.szh.dengji.domain.DengjiDaitoudianmailhuizong(bumen,daitoudian,count(*))  from #{#entityName} where shijian between ?1 and ?2 group by daitoudian,bumen")
     public List findByShijianBetweenGroupbyDaitoudian(Date kshijian,Date jshijian);
     
 }
