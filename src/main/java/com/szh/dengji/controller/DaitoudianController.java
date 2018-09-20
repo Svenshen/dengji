@@ -9,6 +9,7 @@ package com.szh.dengji.controller;
 
 import com.szh.dengji.domain.DengjiDaitoudian;
 import com.szh.dengji.domain.DengjiDaitoudianmail;
+import com.szh.dengji.domain.DengjiDaitoudianmailhuizong;
 import com.szh.dengji.domain.DengjiUser;
 import com.szh.dengji.service.DaitoudianService;
 import java.util.Date;
@@ -23,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import com.szh.dengji.service.DaitoudianmailService;
+import java.text.SimpleDateFormat;
+import java.util.Map;
 
 /**
  *
@@ -97,15 +100,76 @@ public class DaitoudianController {
         Subject subject = SecurityUtils.getSubject();
         DengjiUser user = (DengjiUser)subject.getPrincipal();
         modelAndView.setViewName(chaxunhtml);
-        if(user.getQuanxian() > 10){
-            List<DengjiDaitoudianmail> list = daitoudianmailService.findAll();
-            modelAndView.addObject("maillist",list);
-        }else{
-            List<DengjiDaitoudianmail> list = daitoudianmailService.findByBumen(user.getBumen());
-            modelAndView.addObject("maillist",list);
-        }
-        
+                
         return modelAndView;
     } 
+    
+    
+    @PostMapping("/mail/chaxun")
+    public ModelAndView chaxun(ModelAndView modelAndView,@RequestParam("kshijian") String kshijian,@RequestParam("jshijian") String jshijian){
+        init(modelAndView);
+        Subject subject = SecurityUtils.getSubject();
+        DengjiUser user = (DengjiUser)subject.getPrincipal();
+        modelAndView.setViewName(chaxunhtml);
+        System.out.println(kshijian+","+jshijian);
+        
+        try{
+            if(user.getQuanxian() > 10){
+                List<DengjiDaitoudianmail> list = daitoudianmailService.findByShijian(kshijian, jshijian);
+                modelAndView.addObject("maillist",list);
+            }else{
+                List<DengjiDaitoudianmail> list = daitoudianmailService.findByBumenShijian(user.getBumen(), kshijian, jshijian);
+                modelAndView.addObject("maillist",list);
+            }
+        }catch(Exception e){
+            modelAndView.addObject("msg",e.getMessage());
+        }
+        modelAndView.addObject("kshijian",kshijian);
+        modelAndView.addObject("jshijian",jshijian);
+        return modelAndView;
+    } 
+    
+    
+    @GetMapping("/mail/huizong")
+    public ModelAndView huizong(ModelAndView modelAndView){
+        init(modelAndView);
+        Subject subject = SecurityUtils.getSubject();
+        DengjiUser user = (DengjiUser)subject.getPrincipal();
+        modelAndView.setViewName(huizonghtml);
+                
+        return modelAndView;
+    } 
+    
+    @PostMapping("/mail/huizong")
+    public ModelAndView huizong(ModelAndView modelAndView,@RequestParam("kshijian") String kshijian,@RequestParam("jshijian") String jshijian){
+        init(modelAndView);
+        Subject subject = SecurityUtils.getSubject();
+        DengjiUser user = (DengjiUser)subject.getPrincipal();
+        modelAndView.setViewName(huizonghtml);
+        System.out.println(kshijian+","+jshijian);
+        try{
+            if(user.getQuanxian() > 10){
+                List<DengjiDaitoudianmailhuizong> list = daitoudianmailService.findByShijianGroupbyDaitoudian(kshijian, jshijian);
+                modelAndView.addObject("maillist",list);
+                for(DengjiDaitoudianmailhuizong d : list){
+                    System.out.println("list->"+d);
+                }
+                
+            }else{
+                List<DengjiDaitoudianmailhuizong> list = daitoudianmailService.findByBumenShijianGroupbyDaitoudian(user.getBumen(), kshijian, jshijian);
+                modelAndView.addObject("maillist",list);
+                for(DengjiDaitoudianmailhuizong d : list){
+                    System.out.println("list->"+d);
+                }
+            }
+        }catch(Exception e){
+            modelAndView.addObject("msg",e.getMessage());
+        }
+        
+        modelAndView.addObject("kshijian",kshijian);
+        modelAndView.addObject("jshijian",jshijian);
+        return modelAndView;
+    } 
+    
     
 }

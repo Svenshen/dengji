@@ -8,7 +8,10 @@
 package com.szh.dengji.service;
 
 import com.szh.dengji.domain.DengjiDaitoudianmail;
+import com.szh.dengji.domain.DengjiDaitoudianmailhuizong;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -22,10 +25,16 @@ public interface DaitoudianmailService {
     
     public List<DengjiDaitoudianmail> findAll();
     
-    public List<DengjiDaitoudianmail> findAllhuizong();
     
     public List<DengjiDaitoudianmail> findByBumen(String bumen);
     
-    public List<DengjiDaitoudianmail> findByBumenhuizong(String bumen);
+    
+    public List<DengjiDaitoudianmail> findByShijian(String kshijian,String jshijian) throws Exception;
+    
+    public List<DengjiDaitoudianmail> findByBumenShijian(String bumen,String kshijian,String jshijian) throws Exception;
+    
+    public List<DengjiDaitoudianmailhuizong> findByBumenShijianGroupbyDaitoudian(String bumen,String kshijian,String jshijian) throws Exception;
+    
+    public List<DengjiDaitoudianmailhuizong> findByShijianGroupbyDaitoudian(String kshijian,String jshijian) throws Exception;
     
 }

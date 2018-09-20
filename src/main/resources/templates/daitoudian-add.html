@@ -22,8 +22,8 @@
             <div class="form-group">
               <label for="exampleInputPassword1" class="col-sm-2 control-label">代投点</label>
               <div class="col-sm-4 ">
-                    <select class="form-control" name="daitoudian" th:each="daitoudian : ${daitoudianlist}">
-                        <option th:text="${daitoudian.name}" th:value="${daitoudian.name}"></option>
+                    <select class="form-control" name="daitoudian" >
+                        <option  th:each="daitoudian : ${daitoudianlist}" th:text="${daitoudian.name}" th:value="${daitoudian.name}"></option>
                     </select>
                 </div>
             </div>

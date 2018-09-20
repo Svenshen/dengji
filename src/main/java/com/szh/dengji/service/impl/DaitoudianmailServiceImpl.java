@@ -12,7 +12,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.szh.dengji.dao.DaidoudianmailDao;
+import com.szh.dengji.domain.DengjiDaitoudianmailhuizong;
 import com.szh.dengji.service.DaitoudianmailService;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Map;
 
 /**
  *
@@ -26,6 +30,7 @@ public class DaitoudianmailServiceImpl implements  DaitoudianmailService{
     @Autowired
     DaidoudianmailDao daitoudianDao;
     
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     
     @Override
     public void add(DengjiDaitoudianmail dengjiDaitoudian) throws Exception {
@@ -38,19 +43,33 @@ public class DaitoudianmailServiceImpl implements  DaitoudianmailService{
         return daitoudianDao.findAll();
     }
 
-    @Override
-    public List<DengjiDaitoudianmail> findAllhuizong() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+ 
 
     @Override
     public List<DengjiDaitoudianmail> findByBumen(String bumen) {
         return daitoudianDao.findByBumen(bumen);
     }
 
+
+
     @Override
-    public List<DengjiDaitoudianmail> findByBumenhuizong(String bumen) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<DengjiDaitoudianmail> findByShijian(String kshijian, String jshijian) throws Exception{
+        return daitoudianDao.findByShijianBetween(sdf.parse(kshijian), sdf.parse(jshijian));
+    }
+
+    @Override
+    public List<DengjiDaitoudianmail> findByBumenShijian(String bumen, String kshijian, String jshijian) throws Exception{
+        return daitoudianDao.findByBumenAndShijianBetween(bumen, sdf.parse(kshijian), sdf.parse(jshijian));
+    }
+
+    @Override
+    public List<DengjiDaitoudianmailhuizong> findByBumenShijianGroupbyDaitoudian(String bumen, String kshijian, String jshijian) throws Exception {
+        return daitoudianDao.findByBumenAndShijianBetweenGroupbyDaitoudian(bumen, sdf.parse(kshijian), sdf.parse(jshijian));
+    }
+
+    @Override
+    public List<DengjiDaitoudianmailhuizong> findByShijianGroupbyDaitoudian( String kshijian, String jshijian) throws Exception {
+        return daitoudianDao.findByShijianBetweenGroupbyDaitoudian(sdf.parse(kshijian), sdf.parse(jshijian));
     }
 
 }

@@ -8,7 +8,8 @@
     
      <!-- Bootstrap -->
     <!--<link th:href="@{/bootstrap/css/bootstrap.css}"  rel="stylesheet">-->
-    <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"  rel="stylesheet">    
+    <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"  rel="stylesheet">   
+    <link th:href="@{/webjars/Eonasdan-bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css}"  rel="stylesheet">   
 </head>
 <body>
 <div th:fragment="commonNav">
@@ -66,6 +67,8 @@
     <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
     <!--<script th:src="@{/bootstrap/js/bootstrap.min.js}" ></script>-->
     <script th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}" ></script>
+    <script th:src="@{/webjars/momentjs/2.22.2/min/moment-with-locales.min.js}" ></script>
+    <script th:src="@{/webjars/Eonasdan-bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js}" ></script>
     <script>
          $(function () {   $(".navbar-default").find("li").each(
                      function () {     
@@ -80,6 +83,9 @@
          
 
         </script>
+    <script>
+            $(".form_datetime").datetimepicker({locale:'zh-cn',format: 'YYYY-MM-DD HH:mm:ss'});
+    </script>
 </footer>
 </body>
 </html>
