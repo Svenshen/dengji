@@ -34,16 +34,18 @@ public class DengjiToudiliang implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     Date riqi;
     @Column
-    Integer biaokuai;
+    Integer biaokuai = 0;
     @Column
-    Integer kuaibao;
+    Integer kuaibao = 0;
     @Column
-    Integer guoji;
+    Integer guoji = 0;
     @Column
-    Integer yituotou;
+    Integer yituotou = 0;
     @Column
-    Integer zhuantui;
+    Integer zhuantui = 0;
     @Column
-    Integer liucun;
+    Integer liucun = 0;
+    
+    
 
 }

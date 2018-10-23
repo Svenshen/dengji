@@ -11,6 +11,7 @@ import com.szh.dengji.domain.DengjiDaitoudian;
 import com.szh.dengji.domain.DengjiToudiliang;
 import com.szh.dengji.domain.DengjiUser;
 import com.szh.dengji.service.DengjiToudiliangService;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.apache.shiro.SecurityUtils;
@@ -84,15 +85,34 @@ public class ToudiliangController {
         Subject subject = SecurityUtils.getSubject();
         DengjiUser user = (DengjiUser)subject.getPrincipal();
         try{
+            DengjiToudiliang huizong = new DengjiToudiliang();
             if(user.getQuanxian() > 10){
-
-                modelAndView.addObject("list", dengjiToudiliangService.findByriqibetween(kshijian, jshijian));
+                List<DengjiToudiliang> list20 = dengjiToudiliangService.findByriqibetween(kshijian, jshijian);
+                for(DengjiToudiliang d : list20){
+                    huizong.setBiaokuai(huizong.getBiaokuai()+d.getBiaokuai());
+                    huizong.setKuaibao(huizong.getKuaibao()+d.getKuaibao());
+                    huizong.setGuoji(huizong.getGuoji()+d.getGuoji());
+                    huizong.setLiucun(huizong.getLiucun()+d.getLiucun());
+                    huizong.setYituotou(huizong.getYituotou()+d.getYituotou());
+                    huizong.setZhuantui(huizong.getZhuantui()+d.getZhuantui());
+                }
+                modelAndView.addObject("list", list20);
             }else{
-
-                modelAndView.addObject("list", dengjiToudiliangService.findByriqibetweenbumen(kshijian, jshijian, user.getBumen()));
+                List<DengjiToudiliang> list10 = dengjiToudiliangService.findByriqibetweenbumen(kshijian, jshijian, user.getBumen());
+                for(DengjiToudiliang d : list10){
+                    huizong.setBiaokuai(huizong.getBiaokuai()+d.getBiaokuai());
+                    huizong.setKuaibao(huizong.getKuaibao()+d.getKuaibao());
+                    huizong.setGuoji(huizong.getGuoji()+d.getGuoji());
+                    huizong.setLiucun(huizong.getLiucun()+d.getLiucun());
+                    huizong.setYituotou(huizong.getYituotou()+d.getYituotou());
+                    huizong.setZhuantui(huizong.getZhuantui()+d.getZhuantui());
+                }
+                modelAndView.addObject("list", list10);
             }
+            modelAndView.addObject("huizong", huizong);
         }catch(Exception e){
             modelAndView.addObject("msg",e.getMessage());
+            e.printStackTrace();
         }
         return modelAndView;
     }

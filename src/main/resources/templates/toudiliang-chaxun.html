@@ -44,7 +44,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="mail,mailstat : ${list}">
+                <tr th:each="mail,mailstat : ${list}" >
                     <td th:text="${mail.riqi}"></td>
                     <td th:text="${mail.bumen}" ></td>
                     <td th:text="${mail.biaokuai}"></td>
@@ -54,6 +54,16 @@
                     <td th:text="${mail.yituotou}"></td>
                     <td th:text="${mail.liucun}"></td>
                     <td th:text="${mail.zhuantui}"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">合计</td>
+                    <td th:text="${huizong!=null}?${huizong.biaokuai}"></td>
+                    <td th:text="${huizong!=null}?${huizong.kuaibao}"></td>
+                    <td th:text="${huizong!=null}?${huizong.guoji}"></td>
+                    <td th:text="${huizong!=null}?${huizong.biaokuai}+${huizong.kuaibao}+${huizong.guoji}"></td>
+                    <td th:text="${huizong!=null}?${huizong.yituotou}"></td>
+                    <td th:text="${huizong!=null}?${huizong.liucun}"></td>
+                    <td th:text="${huizong!=null}?${huizong.zhuantui}"></td>
                 </tr>
             </tbody>
         </table>
