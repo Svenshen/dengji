@@ -39,8 +39,9 @@
                     <th>国际量</th>
                     <th>合计进口量</th>
                     <th>妥投量</th>
-                    <th>留存量</th>
+                    
                     <th>转退量</th>
+                    <th>留存量</th>
                 </tr>
             </thead>
             <tbody>
@@ -52,8 +53,9 @@
                     <td th:text="${mail.guoji}"></td>
                     <td th:text="${mail.biaokuai}+${mail.kuaibao}+${mail.guoji}"></td>
                     <td th:text="${mail.yituotou}"></td>
-                    <td th:text="${mail.liucun}"></td>
+                    
                     <td th:text="${mail.zhuantui}"></td>
+                    <td th:text="${mail.liucun}"></td>
                 </tr>
                 <tr>
                     <td colspan="2">合计</td>
@@ -62,8 +64,9 @@
                     <td th:text="${huizong!=null}?${huizong.guoji}"></td>
                     <td th:text="${huizong!=null}?${huizong.biaokuai}+${huizong.kuaibao}+${huizong.guoji}"></td>
                     <td th:text="${huizong!=null}?${huizong.yituotou}"></td>
-                    <td th:text="${huizong!=null}?${huizong.liucun}"></td>
+                    
                     <td th:text="${huizong!=null}?${huizong.zhuantui}"></td>
+                    <td th:text="${huizong!=null}?${huizong.liucun}"></td>
                 </tr>
             </tbody>
         </table>

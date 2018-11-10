@@ -14,6 +14,7 @@ import com.szh.dengji.service.DengjiToudiliangService;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.validation.Valid;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,9 +66,21 @@ public class ToudiliangController {
         DengjiUser user = (DengjiUser)subject.getPrincipal();
         dengjiToudiliang.setBumen(user.getBumen());
         dengjiToudiliang.setRiqi(new Date());
-        dengjiToudiliangService.add(dengjiToudiliang);
-        modelAndView.addObject("mail",dengjiToudiliangService.findBybumenriqi(new Date(), user.getBumen()));
-        modelAndView.addObject("msg", "登记成功");
+        try{
+            int toudiliang1 = dengjiToudiliang.getBiaokuai()+dengjiToudiliang.getKuaibao()+dengjiToudiliang.getGuoji();
+            int toudiliang2 = dengjiToudiliang.getLiucun()+dengjiToudiliang.getYituotou()+dengjiToudiliang.getZhuantui();
+            if(toudiliang1 == toudiliang2){
+                dengjiToudiliangService.add(dengjiToudiliang);
+                modelAndView.addObject("msg", "登记成功");
+            }else{
+                modelAndView.addObject("msg", "数据错误");
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            modelAndView.addObject("msg", e.getMessage());
+        }
+        modelAndView.addObject("mail",dengjiToudiliang);
+        
         return modelAndView;
     }
     @GetMapping("/chaxun")

@@ -14,6 +14,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Temporal;
+import javax.validation.constraints.NotEmpty;
 import lombok.Data;
 
 /**
@@ -34,17 +35,17 @@ public class DengjiToudiliang implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     Date riqi;
     @Column
-    Integer biaokuai = 0;
+    int biaokuai = 0;
     @Column
-    Integer kuaibao = 0;
+    int kuaibao = 0;
     @Column
-    Integer guoji = 0;
+    int guoji = 0;
     @Column
-    Integer yituotou = 0;
+    int yituotou = 0;
     @Column
-    Integer zhuantui = 0;
+    int zhuantui = 0;
     @Column
-    Integer liucun = 0;
+    int liucun = 0;
     
     
 
