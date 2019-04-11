@@ -6,7 +6,7 @@
 	<groupId>com.szh</groupId>
 	<artifactId>dengji</artifactId>
 	<version>1.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<name>dengji</name>
 	<description>Demo project for Spring Boot</description>
@@ -22,6 +22,10 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+                <docker.repository.url>registry.cn-hangzhou.aliyuncs.com</docker.repository.url>
+                <docker.repository.namespace>svenshen</docker.repository.namespace>
+                <docker.repository.serverId>docker-aliyun-my</docker.repository.serverId>
+                <docker.image.prefix>dengji</docker.image.prefix>
 	</properties>
 
 	<dependencies>
@@ -40,8 +44,8 @@
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.microsoft.sqlserver</groupId>
-			<artifactId>mssql-jdbc</artifactId>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
@@ -113,18 +117,64 @@
                     <artifactId>momentjs</artifactId>
                     <version>2.22.2</version>
                 </dependency>
+                <dependency>
+                    <groupId>org.apache.httpcomponents</groupId>
+                    <artifactId>httpclient</artifactId>
+                    
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.commons</groupId>
+                    <artifactId>commons-collections4</artifactId>
+                    <version>4.2</version>
+                </dependency>
 <!--                <dependency>
                     <groupId>org.activiti</groupId>
                     <artifactId>activiti-spring-boot-starter-basic</artifactId>
                 </dependency>-->
 	</dependencies>
 
+        
 	<build>
 		<plugins>
-			<plugin>
+<!--			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+                        <plugin>
+                                <groupId>com.spotify</groupId>
+                                <artifactId>dockerfile-maven-plugin</artifactId>
+                                <version>1.4.10</version>
+                                <configuration>
+                                    <repository>${docker.image.prefix}/${project.artifactId}</repository>
+                                    <buildArgs> 
+                                        <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE> 
+                                    </buildArgs> 
+                                </configuration>
+                        </plugin>-->
+                        <plugin>
+                            <groupId>com.spotify</groupId>
+                            <artifactId>docker-maven-plugin</artifactId>
+                            <version>1.1.1</version>
+                            <configuration>
+                                <forceTags>true</forceTags>
+                                <pushImage>true</pushImage>
+                                <buildArgs>
+                                    <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+                                </buildArgs>
+                                <imageName>${docker.repository.url}/${docker.repository.namespace}/${project.artifactId}:${project.version}</imageName>
+                                <serverId>${docker.repository.serverId}</serverId>
+                                <registryUrl>${docker.repository.url}</registryUrl>
+                                <dockerDirectory>src/main/docker</dockerDirectory>
+                                <resources>
+                                    <resource>
+                                        <targetPath>/</targetPath>
+                                        <directory>${project.build.directory}</directory>
+                                        <include>${project.build.finalName}.jar</include>
+                                    </resource>
+                                </resources>
+                            </configuration>
+                        </plugin>
+
 		</plugins>
 	</build>
 
