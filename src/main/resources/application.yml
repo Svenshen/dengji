@@ -49,8 +49,8 @@ spring:
         date-format: yyyy-MM-dd HH:mm:ss
     servlet:
         multipart:
-            max-file-size: 10Mb
-            max-request-size: 10Mb
+            max-file-size: 10MB
+            max-request-size: 10MB
 
 
     
