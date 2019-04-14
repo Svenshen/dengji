@@ -2,7 +2,7 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 # @autoor szh
-FROM openjdk:11-jdk-oraclelinux7
+FROM openjdk:11-jdk-oracle
 VOLUME /tmp
 #ARG JAR_FILE
 #RUN apk add -U tzdata
