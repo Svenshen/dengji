@@ -19,6 +19,6 @@ import lombok.Data;
 @Data
 public class DengjiIpId implements Serializable{
     String ip;
-    String mac;
+    
     String mingcheng;
 }

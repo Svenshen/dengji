@@ -9,6 +9,7 @@ package com.szh.dengji.dao;
 
 import com.szh.dengji.domain.DengjiBumen;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  *
@@ -16,6 +17,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * QQ:873689
  * @date 2019-3-15 11:28:11
  */
-public interface DengjiBumenDao extends  JpaRepository<DengjiBumen,String>{
+@Repository
+public interface DengjiBumenDao extends  JpaRepository<DengjiBumen,Long>{
 
 }

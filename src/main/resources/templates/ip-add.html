@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="zh-CN">
+<head th:replace="common::commonHeader('主页')">
+</head>
+<body>
+    <div th:include="common::commonNav"></div>
+    <div class="container">
+        <form method="post" th:action="@{/toudiliang/add}" class="form-horizontal" onkeydown="if(event.keyCode==13){return true;}">
+            <div class="form-group">
+                <label style="font-size: 12px;color: red" class="col-sm-2 control-label"  ></label>
+                <div class="col-sm-4">
+                    <label style="font-size: 12px;color: red" class="control-label" th:text="${msg}" ></label>
+                </div>
+            </div>
+            <div class="form-group">
+              <label  class="col-sm-2 control-label" >IP</label>
+              <div class="col-sm-4 ">
+                  <input type="text"  class="form-control"  name="ip" th:value="${mail!=null}?${mail.biaokuai}" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label  class="col-sm-2 control-label" >物理地址</label>
+              <div class="col-sm-4 ">
+                  <input type="text"  class="form-control"  name="mac" th:value="${mail!=null}?${mail.kuaibao}" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label  class="col-sm-2 control-label" >电脑名</label>
+              <div class="col-sm-4 ">
+                  <input type="text"  class="form-control"  name="mingcheng" th:value="${mail!=null}?${mail.guoji}" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label  class="col-sm-2 control-label" >部门</label>
+              <div class="col-sm-4 ">
+                  <select class="form-control" name="daitoudian" >
+                        <option  th:each="bumen : ${bumenlist}" th:text="${bumen.name}" th:value="${bumen.name}"></option>
+                    </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label  class="col-sm-2 control-label" >设备类型</label>
+              <div class="col-sm-4 ">
+                  <input type="text" class="form-control"  name="shebeilei" th:value="${mail!=null}?${mail.zhuantui}" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label  class="col-sm-2 control-label" >趋势</label>
+              <div class="col-sm-4 ">
+                  <select class="form-control" name="qushi" >
+                        <option  value="是">是</option>
+                        <option  value="是">否</option>
+                  </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label  class="col-sm-2 control-label" >landesk</label>
+              <div class="col-sm-4 ">
+                  <select class="form-control" name="landesk" >
+                        <option  value="是">是</option>
+                        <option  value="否">否</option>
+                  </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label  class="col-sm-2 control-label" >cdms</label>
+              <div class="col-sm-4 ">
+                  <select class="form-control" name="cdms" >
+                        <option  value="是">是</option>
+                        <option  value="否">否</option>
+                  </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label"></label>
+                <div class="col-sm-2 ">
+                    <button type="submit" class="btn btn-primary btn-block">提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div th:include="common::commonFooter"></div>
+</body>
+</html>

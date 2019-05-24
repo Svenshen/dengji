@@ -28,20 +28,22 @@ public class DengjiIp implements Serializable {
     @Id
     @Column
     String ip;
-    @Id
+    
     @Column
     String mac;
     @Id
     @Column
     String mingcheng;
     @Column
+    String shebeilei;
+    @Column
     String bumen;
     @Column
-    boolean cdms;
+    String cdms;
     @Column
-    boolean landesk;
+    String landesk;
     @Column
-    boolean qushi;
+    String qushi;
     
     
 }
