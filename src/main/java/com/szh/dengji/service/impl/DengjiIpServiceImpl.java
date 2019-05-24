@@ -32,10 +32,14 @@ public class DengjiIpServiceImpl implements DengjiIpService{
         DengjiIpId dengjiIpId = new DengjiIpId();
         dengjiIpId.setIp(dengjiIp.getIp());
         dengjiIpId.setMingcheng(dengjiIp.getMingcheng());
-        DengjiIp d = dengjiIpDao.findById(dengjiIpId).get();
-        if(d!=null){
+        DengjiIp d = dengjiIpDao.findById(dengjiIpId).orElse(null);
+        if(d == null){
             dengjiIpDao.save(dengjiIp);
+        }else{
+            throw new Exception("设备已存在");
         }
+        
+        
     }
 
     @Override
