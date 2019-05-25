@@ -8,7 +8,6 @@
 package com.szh.dengji.dao;
 
 import com.szh.dengji.domain.DengjiIp;
-import com.szh.dengji.domain.DengjiIpId;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -19,6 +18,6 @@ import org.springframework.stereotype.Repository;
  * @date 2019-3-15 11:28:52
  */
 @Repository
-public interface DengjiIpDao extends  JpaRepository<DengjiIp,DengjiIpId>{
+public interface DengjiIpDao extends  JpaRepository<DengjiIp,String>{
 
 }

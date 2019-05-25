@@ -6,7 +6,7 @@
 <body>
     <div th:include="common::commonNav"></div>
     <div class="container">
-        <form method="post" th:action="@{/dengjiip/add}" class="form-horizontal" onkeydown="if(event.keyCode==13){return true;}">
+        <form method="post" th:action="@{/dengjiip/update}" class="form-horizontal" >
             <div class="form-group">
                 <label style="font-size: 12px;color: red" class="col-sm-2 control-label"  ></label>
                 <div class="col-sm-4">
@@ -16,33 +16,33 @@
             <div class="form-group">
               <label  class="col-sm-2 control-label" >IP</label>
               <div class="col-sm-4 ">
-                  <input type="text"  class="form-control"  name="ip" th:value="${mail!=null}?${mail.biaokuai}" />
+                  <input type="text"  class="form-control"  name="ip" th:value="${ip!=null}?${ip.ip}" readonly="true"/>
               </div>
             </div>
             <div class="form-group">
               <label  class="col-sm-2 control-label" >物理地址</label>
               <div class="col-sm-4 ">
-                  <input type="text"  class="form-control"  name="mac" th:value="${mail!=null}?${mail.kuaibao}" />
+                  <input type="text"  class="form-control"  name="mac" th:value="${ip!=null}?${ip.mac}" />
               </div>
             </div>
             <div class="form-group">
               <label  class="col-sm-2 control-label" >电脑名</label>
               <div class="col-sm-4 ">
-                  <input type="text"  class="form-control"  name="mingcheng" th:value="${mail!=null}?${mail.guoji}" />
+                  <input type="text"  class="form-control"  name="mingcheng" th:value="${ip!=null}?${ip.mingcheng}" />
               </div>
             </div>
             <div class="form-group">
               <label  class="col-sm-2 control-label" >部门</label>
               <div class="col-sm-4 ">
                   <select class="form-control" name="bumen" >
-                        <option  th:each="bumen : ${bumenlist}" th:text="${bumen.bumen}" th:value="${bumen.bumen}"></option>
+                        <option  th:each="bumen : ${bumenlist}" th:text="${bumen.bumen}" th:value="${bumen.bumen}" th:selected=" ${ip!=null}?${ip.bumen} == ${bumen.bumen}"></option>
                     </select>
               </div>
             </div>
             <div class="form-group">
               <label  class="col-sm-2 control-label" >设备类型</label>
               <div class="col-sm-4 ">
-                  <input type="text" class="form-control"  name="shebeilei" th:value="${mail!=null}?${mail.zhuantui}" />
+                  <input type="text" class="form-control"  name="shebeilei" th:value="${ip!=null}?${ip.shebeilei}" />
               </div>
             </div>
             <div class="form-group">
@@ -56,7 +56,7 @@
             <div class="form-group">
               <label  class="col-sm-2 control-label" >landesk</label>
               <div class="col-sm-4 ">
-                  <select class="form-control" name="landesk">
+                  <select class="form-control" name="landesk" >
                       <option  th:each="xuanze : ${xuanzelist}" th:text="${xuanze}" th:value="${xuanze}" th:selected=" ${ip!=null}?${ip.landesk} == ${xuanze}"></option>
                   </select>
               </div>

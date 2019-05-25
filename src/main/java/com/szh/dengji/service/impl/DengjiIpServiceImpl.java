@@ -9,11 +9,11 @@ package com.szh.dengji.service.impl;
 
 import com.szh.dengji.dao.DengjiIpDao;
 import com.szh.dengji.domain.DengjiIp;
-import com.szh.dengji.domain.DengjiIpId;
 import com.szh.dengji.service.DengjiIpService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -29,10 +29,8 @@ public class DengjiIpServiceImpl implements DengjiIpService{
     
     @Override
     public void add(DengjiIp dengjiIp) throws Exception {
-        DengjiIpId dengjiIpId = new DengjiIpId();
-        dengjiIpId.setIp(dengjiIp.getIp());
-        dengjiIpId.setMingcheng(dengjiIp.getMingcheng());
-        DengjiIp d = dengjiIpDao.findById(dengjiIpId).orElse(null);
+       
+        DengjiIp d = dengjiIpDao.findById(dengjiIp.getIp()).orElse(null);
         if(d == null){
             dengjiIpDao.save(dengjiIp);
         }else{
@@ -50,6 +48,17 @@ public class DengjiIpServiceImpl implements DengjiIpService{
     @Override
     public List list() {
         return dengjiIpDao.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void delete(String id) {
+        dengjiIpDao.deleteById(id);
+    }
+
+    @Override
+    public DengjiIp queryone(String id) {
+        return dengjiIpDao.findById(id).orElse(null);
     }
 
 }

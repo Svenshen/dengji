@@ -12,6 +12,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.UniqueConstraint;
 import lombok.Data;
 
 /**
@@ -22,17 +23,16 @@ import lombok.Data;
  */
 @Data
 @Entity
-@IdClass(DengjiIpId.class)
 public class DengjiIp implements Serializable {
 
     @Id
     @Column
     String ip;
     
-    @Column
+    @Column(unique = true)   
     String mac;
-    @Id
-    @Column
+    
+    @Column(unique = true)            
     String mingcheng;
     @Column
     String shebeilei;

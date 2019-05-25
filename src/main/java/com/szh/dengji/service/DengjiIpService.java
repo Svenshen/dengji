@@ -24,4 +24,8 @@ public interface DengjiIpService {
     
     List list();
     
+    void delete(String id);
+    
+    DengjiIp queryone(String id);
+    
 }

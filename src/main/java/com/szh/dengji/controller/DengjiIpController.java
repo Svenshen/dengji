@@ -15,11 +15,14 @@ import com.szh.dengji.service.DengjiIpService;
 import com.szh.dengji.service.DengjiToudiliangService;
 import java.util.Date;
 import java.util.List;
+import javax.websocket.server.PathParam;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,19 +40,34 @@ public class DengjiIpController {
 
     String addhtml = "ip-add";
     String chaxunhtml = "ip-chaxun";
+    String updatehtml = "ip-update";
+    
+    String [] xuanzelist ={"是","否"};
     
     @Autowired
     DengjiIpService dengjiIpService;
     @Autowired
     DengjiBumenService dengjiBumenService;
     
+    @ModelAttribute(name = "user")
+    public DengjiUser getuser(){
+        Subject subject = SecurityUtils.getSubject();
+        return (DengjiUser)subject.getPrincipal();
+    }
     
+    @ModelAttribute(name = "bumenlist")
+    public List getbumen(){
+        return dengjiBumenService.list();
+    }
+    
+    @ModelAttribute(name = "xuanzelist")
+    public String[] getxuanze(){
+        return xuanzelist;
+    }
     
     public void init(ModelAndView modelAndView){
-        Subject subject = SecurityUtils.getSubject();
-        DengjiUser user = (DengjiUser)subject.getPrincipal();
-        modelAndView.addObject("bumenlist",dengjiBumenService.list());
-        modelAndView.addObject("user",user);
+        
+        
     }
     
     @GetMapping("/add")
@@ -77,6 +95,34 @@ public class DengjiIpController {
         
         modelAndView.addObject("iplist", dengjiIpService.list());
         
+        return modelAndView;
+    }
+    
+    @GetMapping("/delete/{ip}")
+    public ModelAndView delete(ModelAndView modelAndView,@PathVariable String ip){
+        init(modelAndView);
+        modelAndView.setViewName(chaxunhtml);
+        dengjiIpService.delete(ip);
+        
+        modelAndView.addObject("iplist", dengjiIpService.list());
+        
+        return modelAndView;
+    }
+    
+    @GetMapping("/update/{ip}")
+    public ModelAndView update(ModelAndView modelAndView,@PathVariable String ip ){
+        init(modelAndView);
+        modelAndView.setViewName(updatehtml);
+        modelAndView.addObject("ip", dengjiIpService.queryone(ip));
+        return modelAndView;
+    }
+    
+    @PostMapping("/update")
+    public ModelAndView update(ModelAndView modelAndView,DengjiIp dengjiIp ){
+        init(modelAndView);
+        modelAndView.setViewName(updatehtml);
+        dengjiIpService.update(dengjiIp);
+        modelAndView.addObject("msg", "修改成功");
         return modelAndView;
     }
     
